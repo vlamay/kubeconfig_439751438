@@ -10,4 +10,7 @@ resources:
 - templates/es-data-statefulset.yaml
 - templates/es-configmap.yaml
 - templates/es-client-svc.yaml
-- templates/es-tls-secret.yaml
+- templates/cluster-issuer.yaml
+- templates/es-certificate.yaml
+- templates/elastic-credentials.yaml
+- templates/test-es-health.yaml
