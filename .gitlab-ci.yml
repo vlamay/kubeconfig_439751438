@@ -1,0 +1,30 @@
+stages:
+  - validate
+  - deploy
+  - test
+
+variables:
+  KUBECONFIG: $KUBE_CONFIG
+
+validate:
+  stage: validate
+  image: garethr/kubeval
+  script:
+    - kubeval elasticsearch/templates/*.yaml
+
+deploy:
+  stage: deploy
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
+  script:
+    - kubectl apply -k elasticsearch/
+
+test:
+  stage: test
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
+  script:
+    - kubectl apply -f elasticsearch/templates/test-es-health.yaml
+    - kubectl wait --for=condition=complete --timeout=120s job/test-es-health -n elastic-search

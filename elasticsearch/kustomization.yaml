@@ -16,3 +16,9 @@ resources:
 - templates/test-es-health.yaml
 - templates/es-snapshot-pvc.yaml
 - templates/snapshot-cronjob.yaml
+- templates/rbac.yaml
+- templates/network-policy.yaml
+- templates/es-master-pdb.yaml
+- templates/es-data-pdb.yaml
+- templates/es-exporter.yaml
+- templates/alertmanager-rule.yaml
