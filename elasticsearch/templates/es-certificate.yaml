@@ -10,3 +10,14 @@ spec:
     kind: ClusterIssuer
   dnsNames:
   - es-client.elastic-search.svc.cluster.local
+  keystores:
+    jks:
+      create: true
+      passwordSecretRef:
+        name: elastic-credentials
+        key: password
+    pkcs12:
+      create: true
+      passwordSecretRef:
+        name: elastic-credentials
+        key: password

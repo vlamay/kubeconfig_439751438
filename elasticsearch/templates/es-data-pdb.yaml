@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: es-data-pdb
+  namespace: elastic-search
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: es-data

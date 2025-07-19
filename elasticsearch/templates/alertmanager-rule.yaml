@@ -1,0 +1,25 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: elasticsearch-rules
+  namespace: elastic-search
+spec:
+  groups:
+  - name: elasticsearch.rules
+    rules:
+    - alert: ElasticsearchClusterHealth
+      expr: elasticsearch_cluster_health_status{color="red"} == 1
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: Elasticsearch cluster health is RED
+        description: 'Elasticsearch cluster {{ $labels.cluster }} is RED for more than 5 minutes.'
+    - alert: ElasticsearchClusterHealth
+      expr: elasticsearch_cluster_health_status{color="yellow"} == 1
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: Elasticsearch cluster health is YELLOW
+        description: 'Elasticsearch cluster {{ $labels.cluster }} is YELLOW for more than 5 minutes.'
