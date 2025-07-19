@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: es-data-headless
+  namespace: elastic-search
+spec:
+  clusterIP: None
+  selector:
+    app: es-data
+  ports:
+  - port: 9300
+    name: transport
