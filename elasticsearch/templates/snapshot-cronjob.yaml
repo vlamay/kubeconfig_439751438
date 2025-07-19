@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: es-snapshot-cronjob
+  namespace: elastic-search
+spec:
+  schedule: "0 1 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: es-snapshot
+            image: curlimages/curl:7.77.0
+            args:
+            - /bin/sh
+            - -c
+            - 'curl -s -k -XPUT "https://es-client:9200/_snapshot/my_backup/snapshot_$(date -u +%Y-%m-%d_%H-%M-%S)?wait_for_completion=true" --user elastic:changeme'
+          restartPolicy: OnFailure

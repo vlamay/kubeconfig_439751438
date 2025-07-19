@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: elastic-search
+
+resources:
+- templates/namespace.yaml
+- templates/es-master-headless-svc.yaml
+- templates/es-master-statefulset.yaml
+- templates/es-data-headless-svc.yaml
+- templates/es-data-statefulset.yaml
+- templates/es-configmap.yaml
+- templates/es-client-svc.yaml
+- templates/cluster-issuer.yaml
+- templates/es-certificate.yaml
+- templates/elastic-credentials.yaml
+- templates/test-es-health.yaml
+- templates/es-snapshot-pvc.yaml
+- templates/snapshot-cronjob.yaml
