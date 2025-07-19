@@ -14,3 +14,5 @@ resources:
 - templates/es-certificate.yaml
 - templates/elastic-credentials.yaml
 - templates/test-es-health.yaml
+- templates/es-snapshot-pvc.yaml
+- templates/snapshot-cronjob.yaml
